@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const DisplayUsers = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+const DisplayUsers = ({user: { html_url, avatar_url, login }}) => {
+  return (
+    <div>
+      <img src={avatar_url} alt={login} />
+    </div>
+  );
+};
 
-export default DisplayUsers
+export default DisplayUsers;

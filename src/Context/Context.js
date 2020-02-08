@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
 import { reducer } from "./reducer";
 import { useGet } from "restful-react";
 import { SEARCH, USERS, USER, REPOS } from "./type";
@@ -15,17 +15,18 @@ export const Provider = props => {
     user: {},
     repos: [],
     text: ""
-  };
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  //   console.log(state)
+};
+const [state, dispatch] = useReducer(reducer, initialState);
+const url = `https://api.github.com/search/users?q=${state.text}&client_id=${client_id}&client_secret=${client_secret}`;
+  useEffect(() => {
+    getUsers();
+  }, [url]);
 
   //   search all users
   const getUsers = async () => {
-    const url = `https://api.github.com/search/users?q=${state.text}&client_id=${client_id}&client_secret=${client_secret}`;
     const response = await axios.get(url);
-    console.log(response)
-    dispatch({ type: USERS, payload: (response.data.items) });
+    console.log(response);
+    dispatch({ type: USERS, payload: response.data.items });
   };
   //   getUsers()
   console.log(state.users);

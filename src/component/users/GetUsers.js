@@ -1,15 +1,18 @@
-import { useContext } from 'react'
-import { context } from '../../Context/Context'
-import DisplayUsers from './DisplayUsers'
+import React, { useContext } from "react";
+import { context } from "../../Context/Context";
+import DisplayUsers from "./DisplayUsers";
 
 const GetUsers = () => {
-    const { state } = useContext(context)
-    const { users } = state
-    return (
-        <div>
-            {users.map(({login, avavtar_url, id, html_url}) => (<DisplayUsers />))}
-        </div>
-    )
-}
+  const { state } = useContext(context);
+  const { users } = state;
+  console.log(users);
+  return (
+    <div>
+      {users.map(user => (
+        <DisplayUsers key={user.id} user={user} />
+      ))}
+    </div>
+  );
+};
 
-export default GetUsers
+export default GetUsers;
