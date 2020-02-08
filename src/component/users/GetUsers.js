@@ -5,7 +5,6 @@ import DisplayUsers from "./DisplayUsers";
 const GetUsers = () => {
   const { state } = useContext(context);
   const { users } = state;
-  console.log(users);
   return (
     <div>
       {users.map(user => (

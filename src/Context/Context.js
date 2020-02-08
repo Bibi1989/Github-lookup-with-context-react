@@ -14,27 +14,37 @@ export const Provider = props => {
     users: [],
     user: {},
     repos: [],
-    text: ""
-};
-const [state, dispatch] = useReducer(reducer, initialState);
-const url = `https://api.github.com/search/users?q=${state.text}&client_id=${client_id}&client_secret=${client_secret}`;
+    text: "",
+    login: ""
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const url = `https://api.github.com/search/users?q=${state.text}&client_id=${client_id}&client_secret=${client_secret}`;
+  const single_url = `https://api.github.com/users/${state.login}?client_id=${client_id}&client_secret=${client_secret}`;
   useEffect(() => {
     getUsers();
   }, [url]);
 
+  useEffect(() => {
+    getUser();
+  }, [single_url]);
+
   //   search all users
   const getUsers = async () => {
     const response = await axios.get(url);
-    console.log(response);
     dispatch({ type: USERS, payload: response.data.items });
   };
-  //   getUsers()
-  console.log(state.users);
+
+  //   getUser
+  const getUser = async () => {
+    const response = await axios.get(single_url);
+    dispatch({ type: USER, payload: response.data });
+  };
 
   return (
     <context.Provider
       value={{
         getUsers,
+        getUser,
         state,
         dispatch
       }}
