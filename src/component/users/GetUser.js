@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { context } from "../../Context/Context";
 import { PARAM } from "../../Context/type";
+import { Parent } from "../styles/getUser";
 
 const GetUser = () => {
+  const history = useHistory();
   const { user, repos, dispatch } = useContext(context);
   const { logins } = useParams();
   useEffect(() => {
@@ -27,39 +29,52 @@ const GetUser = () => {
   } = user;
 
   return (
-    <div>
-      <div>
-        <img src={avatar_url} alt={login} />
-        <div>
+    <Parent>
+      <div className='first'>
+        <div className='img'>
+          <img src={avatar_url} alt={login} />
+        </div>
+        <div className='repos'>
+          <span className="fa fa-user-plus"> Followers {followers}</span>
+          <span className="fa fa-user-plus"> Following {following}</span>
+          <span className="fa fa-user-plus"> Public Repos {public_repos}</span>
+          <span className="fa fa-user-plus"> Gists {public_gist}</span>
+        </div>
+        <div className='bio'>
           <h3>Bio</h3>
           <p>{bio}</p>
         </div>
+        <div className='github-link'>
+          <a href={html_url}>User Github Link</a>
+        </div>
       </div>
 
-      <div>
-        <h1>{name} Github Profile</h1>
+      <div className='second'>
         <div>
-          <span>Github Username: </span>
-          <span>{login}</span>
-        </div>
-        <div>
-          <span>Email Address: </span>
-          <span>{email}</span>
-        </div>
-        <div>
-          <span>Blog address: </span>
-          <span>{blog}</span>
-        </div>
-        <div>
-          <span>Company: </span>
-          <span>{company}</span>
-        </div>
-        <div>
-          <span>Location: </span>
-          <span>{location}</span>
+          <h1>{name} Github Profile</h1>
+          <div className='attr'>
+            <span className='fa fa-user'></span>
+            <span>{login}</span>
+          </div>
+          <div className='attr'>
+            <span className='fa fa-envelope'></span>
+            <span>{email}</span>
+          </div>
+          <div className='attr'>
+            <span className='fa fa-rss'></span>
+            <a href={`https://${blog}`}>{blog}</a>
+          </div>
+          <div className='attr'>
+            <span className='fa fa-building'></span>
+            <span>{company}</span>
+          </div>
+          <div className='attr'>
+            <span className='fa fa-street-view'></span>
+            <span>{location}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </Parent>
   );
 };
 
