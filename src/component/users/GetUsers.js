@@ -3,8 +3,7 @@ import { context } from "../../Context/Context";
 import DisplayUsers from "./DisplayUsers";
 
 const GetUsers = () => {
-  const { state } = useContext(context);
-  const { users } = state;
+  const { users } = useContext(context);
   return (
     <div>
       {users.map(user => (

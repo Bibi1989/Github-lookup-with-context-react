@@ -14,7 +14,7 @@ function App() {
             <Search />
             <GetUsers />
           </Route>
-          <Route path="/user/:login">
+          <Route path="/user/:logins">
             <GetUser/>
           </Route>
         </Switch>

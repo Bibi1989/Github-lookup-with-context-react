@@ -1,4 +1,4 @@
-import { SEARCH, USERS, USER, REPOS } from './type'
+import { SEARCH, USERS, USER, REPOS, PARAM } from './type'
 
 export const reducer = (state, action) => {
     switch(action.type) {
@@ -8,8 +8,10 @@ export const reducer = (state, action) => {
             return {...state, users: action.payload}
         case USER:
             return {...state, user: action.payload}
-        case "param":
-            return {...state, login: action.payload}
+        case REPOS:
+            return {...state, repos: action.payload}
+        case PARAM:
+            return {...state, logins: action.payload}
         default: 
             return state
     } 
