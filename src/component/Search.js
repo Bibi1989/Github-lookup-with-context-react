@@ -1,19 +1,18 @@
 import React, { useContext, useState } from 'react'
-import { dispatch, context } from '../Context/Context'
-import { SEARCH } from '../Context/type'
+import { context } from '../Context/Context'
 
 const Search = () => {
     const [text, setText] = useState("");
-    const { dispatch, getUsers } = useContext(context)
+    const { getUsers } = useContext(context)
 
     const handleInput = e => {
+        // getUsers(e.target.value)
         setText(e.target.value)
     }
 
     const handleSearch = e => {
         e.preventDefault()
-        dispatch({ type: SEARCH, payload: text })
-        getUsers()
+        getUsers(text)
         setText('')
     }
 
