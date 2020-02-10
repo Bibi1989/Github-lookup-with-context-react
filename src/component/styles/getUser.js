@@ -18,8 +18,8 @@ export const Parent = styled.div`
       display: flex;
       justify-content: space-around;
       padding: 2% 10% 0 0;
-      span{
-          color: orange;
+      span {
+        color: orange;
       }
     }
     .bio {
@@ -64,5 +64,34 @@ export const Parent = styled.div`
         color: orange;
       }
     }
+  }
+`;
+
+export const Parent1 = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  padding: 2rem 8%;
+  .repo {
+    color: #777;
+    .private-head {
+      display: flex;
+      justify-content: space-between;
+      span:first-child {
+        color: teal;
+        font-size: 1.2rem;
+      }
+      span:last-child {
+        font-size: 0.8rem;
+      }
+    }
+    .forks{
+      display: flex;
+      justify-content: space-between;
+      padding: 0 2%;
+    }
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 15px;
   }
 `;

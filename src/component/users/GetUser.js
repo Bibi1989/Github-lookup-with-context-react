@@ -1,15 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { context } from "../../Context/Context";
-import { Parent } from "../styles/getUser";
+import { Parent, Parent1 } from "../styles/getUser";
+import UserRepo from "./UserRepo";
 
 const GetUser = () => {
   const history = useHistory();
   const { user, repos, getUser, getRepo } = useContext(context);
   const { logins } = useParams();
 
-  getUser(logins);
-  getRepo(logins);
+  useEffect(() => {
+    getUser(logins);
+    getRepo(logins);
+  }, []);
 
   const handleBack = () => {
     history.goBack();
@@ -83,6 +86,11 @@ const GetUser = () => {
           </div>
         </div>
       </Parent>
+      <Parent1>
+        {repos.map(repo => (
+          <UserRepo key={repo.id} repo={repo} />
+        ))}
+      </Parent1>
     </>
   );
 };
